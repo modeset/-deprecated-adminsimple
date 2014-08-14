@@ -50,8 +50,8 @@ Adminsimple.setup do |config|
     end
 
     c.semantic_navigation :adminsimple_navigasmic_user_nav do |n|
-      n.item n.t('adminsimple.user_nav.profile'), proc{ adminsimple.edit_registration_path }, icon: 'user'
-      n.item n.t('adminsimple.user_nav.sign_out'), proc{ adminsimple.destroy_admin_session_path }, icon: 'share-alt'
+      n.item n.t('adminsimple.user_nav.profile'), proc{ main_app.send("edit_#{Adminsimple.configuration.admin_model}_registration_path")}, class: 'btn', icon: 'user', link_html: { rel: 'modal' }
+      n.item n.t('adminsimple.user_nav.sign_out'), proc{ main_app.send("destroy_#{Adminsimple.configuration.admin_model}_session_path")}, class: 'btn', icon: 'reply'
     end
   end
 

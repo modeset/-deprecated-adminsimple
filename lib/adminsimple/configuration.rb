@@ -4,7 +4,7 @@ module Adminsimple
   class Configuration
     include Singleton
 
-    cattr_accessor :theme, :layout, :parent_controller, :app_css_overrides, :app_js_overrides
+    cattr_accessor :theme, :layout, :parent_controller, :app_css_overrides, :app_js_overrides, :admin_model
 
     @@theme = :dark
     @@layout = [:user_nav, :main_nav, :content]

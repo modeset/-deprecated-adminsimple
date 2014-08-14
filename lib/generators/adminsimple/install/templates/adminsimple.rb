@@ -12,6 +12,9 @@ Adminsimple.setup do |config|
   # A path to a file in your project to override javascripts
   #config.app_js_overrides = 'admin'
 
+  # allows the ability to configure the class used for administration
+  config.admin_model = :admin
+
   # Specify the layout order
   # You can reorder the default, include additional layout modules or remove unused/unsupported ones.
   config.layout  = [:user_nav, :main_nav, :content]
@@ -36,8 +39,8 @@ Adminsimple.setup do |config|
     end
 
     c.semantic_navigation :adminsimple_user_nav do |n|
-      n.item n.t('adminsimple.user_nav.profile'), proc{ main_app.edit_admin_registration_path }, class: 'btn', icon: 'user', link_html: { rel: 'modal' }
-      n.item n.t('adminsimple.user_nav.sign_out'), proc{ main_app.destroy_admin_session_path }, class: 'btn', icon: 'reply'
+      n.item n.t('adminsimple.user_nav.profile'), proc{ main_app.send("edit_#{Adminsimple.configuration.admin_model}_registration_path")}, class: 'btn', icon: 'user', link_html: { rel: 'modal' }
+      n.item n.t('adminsimple.user_nav.sign_out'), proc{ main_app.send("destroy_#{Adminsimple.configuration.admin_model}_session_path")}, class: 'btn', icon: 'reply'
     end
   end
 

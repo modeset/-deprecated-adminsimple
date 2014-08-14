@@ -7,7 +7,7 @@ class Adminsimple::Devise::RegistrationsController < Devise::RegistrationsContro
   private
 
   def authenticate!
-    authenticate_admin!
+    self.send("authenticate_#{Adminsimple.configuration.admin_model}!")
   end
 
   def layout

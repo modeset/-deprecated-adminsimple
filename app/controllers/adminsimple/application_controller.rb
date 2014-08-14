@@ -9,11 +9,11 @@ class Adminsimple::ApplicationController < Adminsimple.configuration.parent_cont
   protected
 
   def authenticate!
-    authenticate_admin!
+    self.send("authenticate_#{Adminsimple.configuration.admin_model}!")
   end
 
   def current_user
-    current_admin
+    self.send("current_#{Adminsimple.configuration.admin_model}")
   end
 
   def layout

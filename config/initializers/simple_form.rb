@@ -13,14 +13,25 @@ inputs = %w[
   TextInput
 ]
 
-inputs.each do |input_type|
-  superclass = "SimpleForm::Inputs::#{input_type}".constantize
+#inputs.each do |input_type|
+#  superclass = "SimpleForm::Inputs::#{input_type}".constantize
+#
+#  new_class = Class.new(superclass) do
+#    def input_html_classes
+#      super.push('form-control')
+#    end
+#  end
+#
+#  Object.const_set(input_type, new_class)
+#end
 
-  new_class = Class.new(superclass) do
-    def input_html_classes
-      super.push('form-control')
+# formtastic name collision avoidance
+# https://github.com/gregbell/active_admin/issues/2703
+inputs.each do |input_type|
+  "SimpleForm::Inputs::#{input_type}".constantize.class_eval do
+    alias_method :__input_html_classes, :input_html_classes
+    define_method(:input_html_classes) do
+      __input_html_classes.push('form-control')
     end
   end
-
-  Object.const_set(input_type, new_class)
 end

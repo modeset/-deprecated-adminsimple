@@ -3,6 +3,7 @@ en:
     site_name: 'Adminsimple'
     search_prompt: 'Search...'
     sign_in_prompt:  'Sign in using your registered account:'
+    login_button: 'Sign in'
     user_nav:
       profile: 'Profile'
       sign_out: 'Sign Out'
