@@ -7,6 +7,7 @@ module Adminsimple
     cattr_accessor :themes,
                    :layout,
                    :devise_model,
+                   :devise_options,
                    :parent_controller,
                    :app_css_overrides,
                    :app_js_overrides
@@ -14,6 +15,7 @@ module Adminsimple
     @@theme = :light
     @@layout = [:header, :search, :user_nav, :main_nav, :content]
     @@devise_model = :admin
+    @@devise_options = {controllers: {}} # controllers: {omniauth_callbacks: 'adminsimple/devise/omniauth_callbacks'}
     @@parent_controller = 'ActionController::Base'
   end
 
